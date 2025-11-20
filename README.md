@@ -1,73 +1,102 @@
-# React + TypeScript + Vite
+# demo-react-todo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Vite + React + TypeScript を使用したシンプルな ToDo アプリケーションです。
 
-Currently, two official plugins are available:
+## 概要
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+このプロジェクトは、最小限の機能を持つ ToDo アプリケーションの実装例です。タスクの追加、完了状態の切り替え、入力バリデーションなどの基本機能を提供します。
 
-## React Compiler
+## 機能
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- ✅ **タスク追加**: テキスト入力欄にタイトルを入力し、「追加」ボタンをクリックしてタスクを追加
+- ✅ **完了状態の切り替え**: 各タスクのチェックボックスで完了/未完了を切り替え（完了したタスクには取り消し線が表示されます）
+- ✅ **入力バリデーション**: 空文字や空白のみのタイトルは追加できず、エラーメッセージが表示されます
 
-## Expanding the ESLint configuration
+## 技術スタック
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Vite**: 高速な開発環境とビルドツール
+- **React 19**: UI ライブラリ
+- **TypeScript**: 型安全性を提供
+- **ESLint**: コード品質の維持
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## プロジェクト構成
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── types.ts          # Todo 型の定義
+├── App.tsx           # メインコンポーネント（状態管理）
+├── TodoInput.tsx     # タスク入力フォームコンポーネント
+├── TodoList.tsx      # タスク一覧表示コンポーネント
+├── App.css           # スタイル
+├── index.css         # グローバルスタイル
+└── main.tsx          # エントリーポイント
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 開発環境のセットアップ
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 必要な環境
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18 以上
+- npm または yarn
+
+### ローカル環境での実行
+
+1. 依存関係のインストール:
+
+```bash
+npm install
 ```
+
+2. 開発サーバーの起動:
+
+```bash
+npm run dev
+```
+
+ブラウザで `http://localhost:5173` にアクセスしてください。
+
+### GitHub Codespaces での実行
+
+このプロジェクトは Dev Container に対応しています。GitHub Codespaces で開くと、自動的に開発環境がセットアップされます。
+
+1. GitHub リポジトリページで「Code」→「Codespaces」→「Create codespace on main」をクリック
+2. Codespace が起動したら、自動的に依存関係がインストールされます
+3. ターミナルで `npm run dev` を実行
+
+## ビルドとデプロイ
+
+### プロダクションビルド
+
+```bash
+npm run build
+```
+
+ビルドされたファイルは `dist/` ディレクトリに出力されます。
+
+### プレビュー
+
+ビルドした内容をローカルでプレビュー:
+
+```bash
+npm run preview
+```
+
+## コード品質
+
+### リント
+
+```bash
+npm run lint
+```
+
+### 型チェック
+
+TypeScript のビルド時に型チェックが実行されます:
+
+```bash
+npm run build
+```
+
+## ライセンス
+
+MIT
