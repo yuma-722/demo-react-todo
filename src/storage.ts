@@ -21,10 +21,18 @@ class LocalStorageAdapter implements TodoStorage {
         completed: boolean;
         createdAt: string;
       }>;
-      return parsed.map(todo => ({
-        ...todo,
-        createdAt: new Date(todo.createdAt),
-      }));
+      return parsed
+        .map(todo => {
+          const date = new Date(todo.createdAt);
+          if (isNaN(date.getTime())) {
+            return null;
+          }
+          return {
+            ...todo,
+            createdAt: date,
+          };
+        })
+        .filter((todo): todo is Todo => todo !== null);
     } catch {
       return [];
     }

@@ -55,8 +55,8 @@ function App() {
 
     const sorted = [...todos].sort((a, b) => {
       if (sortField === 'createdAt') {
-        const dateA = new Date(a.createdAt).getTime();
-        const dateB = new Date(b.createdAt).getTime();
+        const dateA = a.createdAt instanceof Date ? a.createdAt.getTime() : new Date(a.createdAt).getTime();
+        const dateB = b.createdAt instanceof Date ? b.createdAt.getTime() : new Date(b.createdAt).getTime();
         return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
       }
       if (sortField === 'completed') {

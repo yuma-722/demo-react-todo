@@ -42,15 +42,19 @@ function SortableTodoItem({ todo, onToggle, formatDate, isDragEnabled }: Sortabl
       {isDragEnabled && (
         <span
           {...listeners}
+          role="button"
+          tabIndex={0}
           style={{
             cursor: 'grab',
             marginRight: '0.5rem',
             padding: '0.25rem',
             color: '#666',
+            userSelect: 'none',
           }}
           aria-label="ドラッグして並べ替え"
+          aria-roledescription="ドラッグ可能"
         >
-          ⋮⋮
+          ≡
         </span>
       )}
       <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1 }}>
